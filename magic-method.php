@@ -1,61 +1,61 @@
 <?php
 class person{
-	private $name;
+	private $personName;
 
-	private $age;
+	private $personAge;
 // constructor
-	public function __construct($newName, $newAge) {
+	public function __construct($newPersonName, $newPersonAge) {
 	try{
-		$this->setName($newName);
-		$this->setAge($newAge);
+		$this->setPersonName($newPersonName);
+		$this->setPersonAge($newPersonAge);
 	} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 		$exceptionType = get_class($exception);
 		throw (new $exceptionType($exception->getMessage(), 0, $exception));
 	}
 	}
 // accessor method for name
-	public function getName(): string {
-		return ($this->name);
+	public function getPersonName(): string {
+		return ($this->personName);
 	}
 // mutator method for name
-	public function setName(string $newName): void {
-		$newName = trim($newName);
-		$newName = filter_var($newName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newName) === true) {
+	public function setPersonName(string $newPersonName): void {
+		$newPersonName = trim($newPersonName);
+		$newPersonName = filter_var($newPersonName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newPersonName) === true) {
 			throw(new \InvalidArgumentException("name is empty or insecure"));
 		}
 
-		if(strlen($newName) >= 64) {
+		if(strlen($newPersonName) >= 64) {
 			throw(new \RangeException("name is too large"));
 		}
 
-		$this->name = $newName;
+		$this->name = $newPersonName;
 
 	}
 // accessor method for age
-	public function getAge(): int {
-		return ($this->age);
+	public function getPersonAge(): int {
+		return ($this->personAge);
 	}
 // mutator method for age
-	public function setAge(int $newAge) {
-		if(empty($newAge) === true) {
+	public function setPersonAge(int $newPersonAge) {
+		if(empty($newPersonAge) === true) {
 			throw (new \InvalidArgumentException("age cannot be empty"));
 		}
 
-		if(($newAge) <= 0) {
+		if(($newPersonAge) <= 0) {
 			throw(new \RangeException("oh no you didn't"));
-		} elseif(($newAge) < 18 && ($newAge) > 0) {
+		} elseif(($newPersonAge) < 18 && ($newPersonAge) > 0) {
 			return ("hi caleb");
-		} elseif(($newAge > 118)) {
+		} elseif(($newPersonAge > 118)) {
 			return ("captain @deepdivedylan");
 		} else {
-			return $this->age = $newAge;
+			return $this->personAge = $newPersonAge;
 		}
 
 	}
 
 // to string method for age
 	public function __toString() {
-		return ($this->age);
+		return ($this->personAge);
 	}
 }
